@@ -1,0 +1,13 @@
+{
+  "difficultySelection": "Selecione a dificuldade",
+  "easy": "Fácil",
+  "medium": "Médio",
+  "hard": "Difícil",
+  "moves": "Movimentos",
+  "time": "Tempo",
+  "restart": "Reiniciar",
+  "congratulations": "🎉 Parabéns! 🎉",
+  "game_completed_line": "Você completou o jogo em",
+  "and": "e",
+  "play_again": "Jogar novamente"
+}

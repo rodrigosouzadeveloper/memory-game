@@ -6,8 +6,10 @@ import { ScoreBoard } from "./components/ScoreBoard";
 import { useMemoryGame } from "./hooks/use-memory-game";
 import { formatTime } from "./lib/formatTime";
 import { Difficulty } from "./types";
+import { useTranslation } from "react-i18next";
 
 function App() {
+  const { i18n } = useTranslation();
   const [difficulty, setDifficulty] = useState<Difficulty | null>(null);
 
   const { cards, moves, time, gameCompleted, handleCardClick, resetGame } =
@@ -19,7 +21,28 @@ function App() {
     resetGame();
   };
 
-  if (!difficulty) return <DifficultySelector onSelect={setDifficulty} />;
+  if (!difficulty) {
+    return (
+      <div className="flex min-h-screen w-full flex-col bg-blue-200 p-2">
+        <div className="flex justify-end gap-5">
+          <button
+            onClick={() => i18n.changeLanguage("pt")}
+            className="cursor-pointer text-3xl hover:text-4xl"
+          >
+            🇧🇷
+          </button>
+          <button
+            onClick={() => i18n.changeLanguage("en")}
+            className="cursor-pointer text-3xl hover:text-4xl"
+          >
+            🇺🇸
+          </button>
+        </div>
+        <DifficultySelector onSelect={setDifficulty} />
+      </div>
+    );
+  }
+
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-center gap-4 bg-blue-200 p-4 sm:gap-8 sm:p-8">
       <ScoreBoard

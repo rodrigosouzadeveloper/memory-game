@@ -2,6 +2,7 @@ import { ANIMATIONS } from "@/constants";
 import { cn } from "@/lib/utils";
 import { Clock, LucideIcon, MousePointerClick, RotateCcw } from "lucide-react";
 import { motion } from "motion/react";
+import { useTranslation } from "react-i18next";
 
 type ScoreBoardProps = {
   moves: number;
@@ -19,12 +20,12 @@ type ScoreItemProps = {
 const SCORE_ITEMS = [
   {
     icon: MousePointerClick,
-    label: "Moves",
+    label: "moves",
     color: "text-yellow-400",
   },
   {
     icon: Clock,
-    label: "Time",
+    label: "time",
     color: "text-blue-400",
   },
 ] as const;
@@ -37,6 +38,7 @@ const ScoreItem = ({ icon: Icon, label, value, color }: ScoreItemProps) => (
 );
 
 export function ScoreBoard({ moves, time, onRestart }: ScoreBoardProps) {
+  const { t } = useTranslation();
   return (
     <motion.div
       {...ANIMATIONS.fadeInDown}
@@ -46,9 +48,9 @@ export function ScoreBoard({ moves, time, onRestart }: ScoreBoardProps) {
         <ScoreItem
           key={label}
           icon={icon}
-          label={label}
+          label={t(label)}
           color={color}
-          value={label === "Time" ? time : moves}
+          value={label === "time" ? time : moves}
         />
       ))}
 
@@ -57,7 +59,7 @@ export function ScoreBoard({ moves, time, onRestart }: ScoreBoardProps) {
         className="group flex items-center gap-2 px-2 text-base text-white hover:text-pink"
       >
         <RotateCcw className="h-4 w-4 transition-transform duration-500 group-hover:-rotate-180 sm:h-5 sm:w-5" />
-        Restart
+        {t("restart")}
       </button>
     </motion.div>
   );
